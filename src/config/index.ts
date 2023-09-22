@@ -12,4 +12,6 @@ export default {
     secret: process.env.JWT_SECRET,
     secret_expireIn: process.env.JWT_SECRET_EXPIRE_IN,
   },
+  my_email: process.env.MY_EMAIL,
+  my_password: process.env.MY_PASSWORD,
 };

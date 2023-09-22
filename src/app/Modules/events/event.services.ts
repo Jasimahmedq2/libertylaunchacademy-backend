@@ -6,11 +6,33 @@ const addEvent = async (payload: IEvent): Promise<IEvent> => {
   return result;
 };
 
-const retrieveEvents = async (filter: {
+const retrieveEvents = async (payload: {
   filterDate?: Date;
   searchTerm?: string;
 }): Promise<IEvent[]> => {
-  const result = await Event.find ({});
+  const { searchTerm, filterDate } = payload;
+  const andConditions: any = [];
+
+  if (searchTerm) {
+    andConditions.push({
+      $or: ["name", "description", "location"].map((field) => ({
+        [field]: {
+          $regex: searchTerm,
+          $options: "i",
+        },
+      })),
+    });
+  }
+
+  if (filterDate) {
+    andConditions.push({
+      $and: [{ start_date: { $gte: filterDate } }],
+    });
+  }
+
+  const whereConditions =
+    andConditions.length > 0 ? { $and: andConditions } : {};
+  const result = await Event.find(whereConditions);
   return result;
 };
 
