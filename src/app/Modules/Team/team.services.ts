@@ -27,7 +27,7 @@ const retrieveTeamMembers = async (): Promise<ITeams[] | null> => {
 const retrieveSingleTeamMembers = async (
   id: string
 ): Promise<ITeams | null> => {
-  const result = await Team.findById(id);
+  const result = await Team.findOne({ teamMember: id }).populate("teamMember");
   return result;
 };
 export const TeamServices = {
