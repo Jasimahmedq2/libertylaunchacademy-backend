@@ -41,7 +41,7 @@ const createAdmission = z.object({
           required_error: "email is required",
         })
         .email("Email confirmation is not valid"),
-      phoneNo: z.number({
+      phoneNo: z.string({
         required_error: "this field is required",
       }),
       address: z.string({
@@ -50,9 +50,7 @@ const createAdmission = z.object({
       streetAddress: z.string({
         required_error: "this field is required",
       }),
-      addressLine2: z.string({
-        required_error: "this field is required",
-      }),
+      addressLine2: z.string().optional(),
       city: z.string({
         required_error: "this field is required",
       }),

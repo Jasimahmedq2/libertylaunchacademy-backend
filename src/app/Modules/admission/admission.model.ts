@@ -54,7 +54,7 @@ const AdmissionModel = new Schema<IAdmission>(
         required: true,
       },
       phoneNo: {
-        type: Number,
+        type: String,
       },
       address: {
         type: String,

@@ -53,7 +53,7 @@ const AdmissionModel = new mongoose_1.Schema({
             required: true,
         },
         phoneNo: {
-            type: Number,
+            type: String,
         },
         address: {
             type: String,
